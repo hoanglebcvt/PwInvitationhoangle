@@ -616,14 +616,39 @@
     <section class="reveal">
       <h2 class="section-title">SỔ LƯU BÚT</h2>
       <div class="divider"><span>❀</span></div>
-      <div class="form-box">
+
+      <div class="form-box" id="wishForm">
         <input type="text" id="wishName" placeholder="Tên của bạn">
         <textarea id="wishText" placeholder="Gửi lời chúc đến cặp đôi..."></textarea>
+      
         <div style="text-align:center">
-          <button class="btn-main" onclick="addWish()">Gửi lời chúc</button>
+          <button class="btn-main" onclick="addWish()">
+            Gửi lời chúc
+          </button>
         </div>
       </div>
-      <div class="wishes" id="wishesList"></div>
+    
+      <div id="wishThankYou"
+           style="display:none;text-align:center;padding:24px;">
+    
+        <h3 style="
+          font-family:'Cormorant Garamond',serif;
+          font-size:1.6rem;
+          margin-bottom:14px;
+          color:var(--olive-dark);">
+
+          Cảm ơn lời chúc của bạn!
+        </h3>
+      
+        <div id="wishPreview"
+             class="wish-item"
+             style="
+               max-width:450px;
+               margin:0 auto;
+               text-align:left;">
+        </div>
+      
+      </div>
     </section>
 
     <section class="reveal">
@@ -787,21 +812,41 @@
     function addWish() {
       const name = document.getElementById('wishName').value.trim();
       const text = document.getElementById('wishText').value.trim();
-      if (!name || !text) return alert('Vui lòng nhập đầy đủ');
-      const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      wishes.unshift({ name, text });
-      localStorage.setItem('wishes', JSON.stringify(wishes));
+
+      if (!name || !text) {
+        alert('Vui lòng nhập đầy đủ');
+        return;
+      }
+    
+      // Hiển thị lời chúc vừa gửi
+      document.getElementById('wishPreview').innerHTML = `
+        <div class="w-name">${name}</div>
+        <div class="w-text">${text}</div>
+      `;
+    
+      // Xóa dữ liệu trong form
       document.getElementById('wishName').value = '';
       document.getElementById('wishText').value = '';
-      renderWishes();
-    }
-    function renderWishes() {
-      const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      document.getElementById('wishesList').innerHTML = wishes.map(w =>
-        `<div class="wish-item"><div class="w-name">${w.name}</div><div class="w-text">${w.text}</div></div>`
-      ).join('');
-    }
-    renderWishes();
+    
+      // Ẩn form
+      document.getElementById('wishForm').style.display = 'none';
+    
+      // Hiện lời cảm ơn
+      document.getElementById('wishThankYou').style.display = 'block';
+    
+      // Sau 10 giây
+      setTimeout(() => {
+      
+        // Ẩn lời cảm ơn + lời chúc
+        document.getElementById('wishThankYou').style.display = 'none';
+      
+        document.getElementById('wishPreview').innerHTML = '';
+      
+        // Hiện lại form
+        document.getElementById('wishForm').style.display = 'block';
+      
+      }, 10000);
+  }
 
     function submitRSVP() {
       if (!document.getElementById('guestName').value.trim()) return alert('Vui lòng nhập tên');
