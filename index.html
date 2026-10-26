@@ -21,9 +21,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -34,18 +32,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, .serif {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* ========== ENVELOPE ========== */
+    /* ENVELOPE */
     #envelope {
       position: fixed;
       inset: 0;
@@ -107,7 +98,7 @@
       letter-spacing: 1.5px;
     }
 
-    /* ========== HERO ========== */
+    /* HERO */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
@@ -125,7 +116,6 @@
       inset: -15%;
       background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1400') center/cover no-repeat;
       opacity: 0.22;
-      will-change: transform;
     }
     .hero-content {
       position: relative;
@@ -139,11 +129,7 @@
       line-height: 1.1;
       margin-bottom: 10px;
     }
-    .hero .amp {
-      font-style: italic;
-      font-weight: 400;
-      opacity: 0.7;
-    }
+    .hero .amp { font-style: italic; font-weight: 400; opacity: 0.7; }
     .hero .date {
       font-size: clamp(0.9rem, 3.5vw, 1.05rem);
       letter-spacing: 3px;
@@ -158,16 +144,13 @@
       margin: 0 auto 28px;
     }
 
-    /* Countdown */
     .countdown {
       display: flex;
       gap: clamp(16px, 5vw, 32px);
       justify-content: center;
       flex-wrap: wrap;
     }
-    .countdown-item {
-      min-width: 64px;
-    }
+    .countdown-item { min-width: 64px; }
     .countdown-item span {
       display: block;
       font-family: 'Cormorant Garamond', serif;
@@ -181,7 +164,6 @@
       text-transform: uppercase;
     }
 
-    /* Sections */
     section {
       padding: clamp(70px, 12vw, 110px) 0;
       border-bottom: 1px solid var(--border);
@@ -196,10 +178,8 @@
       text-align: center;
       font-size: clamp(1.8rem, 6vw, 2.3rem);
       margin-bottom: clamp(40px, 8vw, 60px);
-      letter-spacing: 0.5px;
     }
 
-    /* Reveal */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -210,17 +190,13 @@
       transform: translateY(0);
     }
 
-    /* Nhà Trai / Nhà Gái */
     .houses {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
     }
     @media (min-width: 580px) {
-      .houses {
-        grid-template-columns: 1fr 1fr;
-        gap: 22px;
-      }
+      .houses { grid-template-columns: 1fr 1fr; gap: 22px; }
     }
     .house-card {
       background: var(--bg-soft);
@@ -229,29 +205,14 @@
       text-align: center;
       border-radius: 6px;
     }
-    .house-card h3 {
-      font-size: clamp(1.35rem, 4.5vw, 1.55rem);
-      margin-bottom: 6px;
-    }
-    .house-card .time {
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 16px;
-    }
-    .house-card p {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .house-card h3 { font-size: clamp(1.35rem, 4.5vw, 1.55rem); margin-bottom: 6px; }
+    .house-card .time { color: var(--muted); font-size: 0.88rem; margin-bottom: 16px; }
+    .house-card p { font-size: 0.93rem; color: var(--muted); line-height: 1.6; }
 
-    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-    }
-    @media (min-width: 600px) {
-      .gallery { gap: 16px; }
     }
     .gallery-item {
       overflow: hidden;
@@ -266,17 +227,9 @@
       transition: transform 0.6s ease;
       cursor: pointer;
     }
-    .gallery-item:active img,
-    .gallery-item:hover img {
-      transform: scale(1.06);
-    }
+    .gallery-item:active img { transform: scale(1.06); }
 
-    /* Guestbook + Forms */
-    .wish-form,
-    .rsvp-form {
-      max-width: 440px;
-      margin: 0 auto 40px;
-    }
+    .wish-form, .rsvp-form { max-width: 440px; margin: 0 auto 40px; }
     input, select, textarea {
       width: 100%;
       padding: 15px 16px;
@@ -285,19 +238,14 @@
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 6px;
-      font-size: 16px; /* tránh zoom trên iOS */
+      font-size: 16px;
       font-family: inherit;
       outline: none;
       appearance: none;
-      -webkit-appearance: none;
     }
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #555;
-    }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: #555; }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -310,17 +258,11 @@
       border: none;
       border-radius: 6px;
       font-size: 0.95rem;
-      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: opacity 0.25s;
       margin: 0 auto;
     }
-    .btn:active { opacity: 0.8; }
 
-    .wishes-list {
-      display: grid;
-      gap: 14px;
-    }
+    .wishes-list { display: grid; gap: 14px; }
     .wish-card {
       background: var(--bg-soft);
       border: 1px solid var(--border);
@@ -332,23 +274,11 @@
       font-size: 1.2rem;
       margin-bottom: 6px;
     }
-    .wish-card .text {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
+    .wish-card .text { color: var(--muted); font-size: 0.95rem; }
 
-    .thank-you {
-      display: none;
-      text-align: center;
-      padding: 20px 10px;
-    }
-    .thank-you h3 {
-      font-size: 1.7rem;
-      margin-bottom: 12px;
-    }
+    .thank-you { display: none; text-align: center; padding: 20px 10px; }
+    .thank-you h3 { font-size: 1.7rem; margin-bottom: 12px; }
 
-    /* QR */
     .qr-box {
       text-align: center;
       padding: 28px 20px;
@@ -365,7 +295,6 @@
       border-radius: 4px;
     }
 
-    /* Music button */
     .music-btn {
       position: fixed;
       bottom: max(24px, env(safe-area-inset-bottom));
@@ -390,10 +319,8 @@
       padding: 70px 20px max(40px, env(safe-area-inset-bottom));
       color: var(--muted);
       font-size: 0.9rem;
-      letter-spacing: 1px;
     }
 
-    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -418,18 +345,15 @@
       font-size: 2.2rem;
       color: white;
       cursor: pointer;
-      line-height: 1;
       padding: 8px;
     }
 
-    /* Map link */
     .map-link {
       display: inline-block;
       margin-top: 28px;
       color: var(--text);
       text-decoration: underline;
       font-size: 0.95rem;
-      text-underline-offset: 3px;
     }
   </style>
 </head>
@@ -444,20 +368,20 @@
     </div>
   </div>
 
-  <!-- MUSIC -->
-  <button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc">♪</button>
-  <audio id="bgMusic" loop preload="none">
+  <!-- MUSIC BUTTON -->
+  <button class="music-btn" id="musicBtn">♪</button>
+  <audio id="bgMusic" loop preload="auto">
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg" id="parallaxBg"></div>
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="line"></div>
       <h1 class="names">An <span class="amp">&</span> Minh</h1>
       <p class="date">12 • 12 • 2026</p>
-      <div class="countdown" id="countdown">
+      <div class="countdown">
         <div class="countdown-item"><span id="days">00</span><small>Ngày</small></div>
         <div class="countdown-item"><span id="hours">00</span><small>Giờ</small></div>
         <div class="countdown-item"><span id="mins">00</span><small>Phút</small></div>
@@ -483,7 +407,7 @@
         </div>
       </div>
       <div style="text-align:center" class="reveal">
-        <a href="https://maps.google.com" target="_blank" rel="noopener" class="map-link">Xem bản đồ chỉ đường →</a>
+        <a href="https://maps.google.com" target="_blank" class="map-link">Xem bản đồ chỉ đường →</a>
       </div>
     </div>
   </section>
@@ -493,10 +417,10 @@
     <div class="container">
       <h2 class="section-title reveal">Khoảnh khắc của chúng mình</h2>
       <div class="gallery reveal">
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Ảnh 1" loading="lazy" onclick="openLightbox(this)"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600" alt="Ảnh 2" loading="lazy" onclick="openLightbox(this)"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520854221256-7931775992fb?w=600" alt="Ảnh 3" loading="lazy" onclick="openLightbox(this)"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Ảnh 4" loading="lazy" onclick="openLightbox(this)"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="1" loading="lazy" onclick="openLightbox(this)"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600" alt="2" loading="lazy" onclick="openLightbox(this)"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520854221256-7931775992fb?w=600" alt="3" loading="lazy" onclick="openLightbox(this)"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="4" loading="lazy" onclick="openLightbox(this)"></div>
       </div>
     </div>
   </section>
@@ -506,7 +430,7 @@
     <div class="container">
       <h2 class="section-title reveal">Sổ lời chúc</h2>
       <div class="wish-form reveal">
-        <input type="text" id="wishName" placeholder="Tên của bạn" autocomplete="name">
+        <input type="text" id="wishName" placeholder="Tên của bạn">
         <textarea id="wishText" placeholder="Gửi lời chúc đến cặp đôi..."></textarea>
         <button class="btn" onclick="addWish()">Gửi lời chúc</button>
       </div>
@@ -519,7 +443,7 @@
     <div class="container">
       <h2 class="section-title reveal">Xác nhận tham dự</h2>
       <div class="rsvp-form reveal" id="rsvpForm">
-        <input type="text" id="guestName" placeholder="Tên của bạn" autocomplete="name">
+        <input type="text" id="guestName" placeholder="Tên của bạn">
         <select id="guestCount">
           <option value="1">1 người</option>
           <option value="2">2 người</option>
@@ -540,8 +464,8 @@
     <div class="container">
       <h2 class="section-title reveal">Mừng cưới</h2>
       <div class="qr-box reveal">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK:0123456789-VCB-NguyenVanA" alt="QR Code" loading="lazy">
-        <p style="font-size:0.9rem;color:var(--muted);line-height:1.5">Quét mã để chuyển khoản<br>Nguyễn Văn A – Vietcombank</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK:0123456789-VCB-NguyenVanA" alt="QR">
+        <p style="font-size:0.9rem;color:var(--muted)">Quét mã để chuyển khoản<br>Nguyễn Văn A – Vietcombank</p>
       </div>
     </div>
   </section>
@@ -557,23 +481,39 @@
   </div>
 
   <script>
-    // Envelope
+    let isPlaying = false;
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // Mở thiệp + tự động phát nhạc
     document.getElementById('envelopeBox').addEventListener('click', function() {
       this.classList.add('open');
+
+      // Phát nhạc khi mở thiệp
+      music.volume = 0.5;
+      music.play().then(() => {
+        isPlaying = true;
+        musicBtn.textContent = '❚❚';
+      }).catch(() => {
+        // Nếu bị chặn thì người dùng bấm nút nhạc sau
+      });
+
       setTimeout(() => {
         document.getElementById('envelope').classList.add('hide');
       }, 950);
     });
 
-    // Parallax (chỉ bật trên màn lớn để đỡ lag mobile)
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (!isMobile) {
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const bg = document.getElementById('parallaxBg');
-        if (bg) bg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0) scale(1.1)`;
-      }, { passive: true });
-    }
+    // Nút bật/tắt nhạc
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.textContent = '♪';
+      } else {
+        music.play();
+        musicBtn.textContent = '❚❚';
+      }
+      isPlaying = !isPlaying;
+    });
 
     // Countdown
     const weddingDate = new Date('2026-12-12T09:00:00').getTime();
@@ -589,40 +529,20 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Music
-    let isPlaying = false;
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    musicBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        music.pause();
-        musicBtn.textContent = '♪';
-      } else {
-        music.play().catch(() => {});
-        musicBtn.textContent = '❚❚';
-      }
-      isPlaying = !isPlaying;
-    });
-
-    // Reveal on scroll
+    // Reveal khi scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
 
-    // Guestbook
+    // Sổ lời chúc
     function addWish() {
       const name = document.getElementById('wishName').value.trim();
       const text = document.getElementById('wishText').value.trim();
-      if (!name || !text) {
-        alert('Vui lòng nhập đầy đủ tên và lời chúc');
-        return;
-      }
+      if (!name || !text) return alert('Vui lòng nhập đầy đủ');
       const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
       wishes.unshift({ name, text });
       localStorage.setItem('wishes', JSON.stringify(wishes));
@@ -644,10 +564,7 @@
     // RSVP
     function submitRSVP() {
       const name = document.getElementById('guestName').value.trim();
-      if (!name) {
-        alert('Vui lòng nhập tên của bạn');
-        return;
-      }
+      if (!name) return alert('Vui lòng nhập tên');
       document.getElementById('rsvpForm').style.display = 'none';
       document.getElementById('thankYou').style.display = 'block';
     }
@@ -662,9 +579,6 @@
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
     }
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target === this) closeLightbox();
-    });
   </script>
 </body>
 </html>
