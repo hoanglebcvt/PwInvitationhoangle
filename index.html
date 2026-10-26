@@ -10,11 +10,9 @@
       --olive: #5c6b3d;
       --olive-dark: #3d4a28;
       --cream: #f9f6f0;
-      --cream-dark: #f0ebe3;
       --text: #2c3a1f;
       --text-muted: #5a6b45;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
     body {
@@ -24,13 +22,8 @@
       line-height: 1.65;
       overflow-x: hidden;
     }
-
-    /* Floating petals */
     .petal {
-      position: fixed;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0.6;
+      position: fixed; pointer-events: none; z-index: 5; opacity: 0.6;
       animation: fall linear infinite;
     }
     @keyframes fall {
@@ -40,449 +33,159 @@
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    /* ========== COVER ========== */
+    /* COVER */
     #cover {
-      position: fixed;
-      inset: 0;
-      background: var(--olive);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                  visibility 1.2s, 
-                  transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
+      position: fixed; inset: 0; background: var(--olive); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 1.2s ease, visibility 1.2s, transform 1.2s;
     }
     #cover.hide {
-      opacity: 0;
-      visibility: hidden;
-      transform: scale(1.08);
-      pointer-events: none;
+      opacity: 0; visibility: hidden; transform: scale(1.08); pointer-events: none;
     }
-
     .cover-card {
-      width: min(400px, 92vw);
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 52px 32px 44px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.28);
-      overflow: hidden;
-      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: min(400px, 92vw); background: var(--cream); border-radius: 20px;
+      padding: 52px 32px 44px; text-align: center; position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.28); overflow: hidden;
     }
-    #cover.hide .cover-card {
-      transform: scale(0.92);
-    }
-
-    .cover-card .corner-flower {
-      position: absolute;
-      width: 130px;
-      opacity: 0.42;
-      pointer-events: none;
-    }
-    .cover-card .corner-flower.tl { top: -10px; left: -10px; transform: rotate(-8deg); }
-    .cover-card .corner-flower.br { bottom: -15px; right: -15px; transform: rotate(170deg); }
-
     .heart-btn {
-      width: 56px;
-      height: 56px;
-      background: var(--olive-dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      color: #fff;
-      font-size: 24px;
-      box-shadow: 0 8px 24px rgba(61,74,40,0.3);
+      width: 56px; height: 56px; background: var(--olive-dark); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; color: #fff; font-size: 24px;
     }
-
     .cover-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.15;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; line-height: 1.15;
     }
     .cover-names .amp {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      display: block;
-      margin: 4px 0;
-      color: var(--text-muted);
+      font-family: 'Great Vibes', cursive; font-size: 2.2rem; display: block; margin: 4px 0; color: var(--text-muted);
     }
-
-    .cover-date {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin: 20px 0 8px;
-    }
-    .cover-invite {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-    }
-
+    .cover-date { font-size: 0.95rem; color: var(--text-muted); margin: 20px 0 8px; }
+    .cover-invite { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; }
     .btn-open {
-      background: var(--olive-dark);
-      color: #fff;
-      border: none;
-      padding: 15px 46px;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 8px 22px rgba(61,74,40,0.28);
-    }
-    .btn-open:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 14px 30px rgba(61,74,40,0.38);
-    }
-    .btn-open:active {
-      transform: translateY(-1px) scale(0.98);
+      background: var(--olive-dark); color: #fff; border: none;
+      padding: 15px 46px; border-radius: 50px; font-size: 1rem; cursor: pointer;
     }
 
-    /* ========== MAIN CONTENT ========== */
+    /* MAIN */
     #main {
-      display: none;
-      background: var(--cream);
-      min-height: 100vh;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
-                  transform 1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+      display: none; background: var(--cream); min-height: 100vh;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 1s ease 0.15s, transform 1s ease 0.15s;
     }
-    #main.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    #main.show { display: block; opacity: 1; transform: translateY(0); }
 
-    /* Hero */
     .hero {
-      text-align: center;
-      padding: 80px 20px 60px;
-      background: linear-gradient(to bottom, #f9f6f0 0%, #f4efe6 100%);
-      position: relative;
-      overflow: hidden;
+      text-align: center; padding: 80px 20px 60px;
+      background: linear-gradient(to bottom, #f9f6f0, #f4efe6);
     }
     .hero .label {
-      font-size: 0.78rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 18px;
+      font-size: 0.78rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 18px;
     }
     .hero .script {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(3.3rem, 11vw, 5.2rem);
-      color: var(--olive-dark);
-      line-height: 1.1;
+      font-size: clamp(3.3rem, 11vw, 5.2rem); color: var(--olive-dark);
     }
     .hero .amp {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
-      display: block;
-      margin: 6px 0;
-      color: var(--text-muted);
+      font-family: 'Great Vibes', cursive; font-size: 2.5rem;
+      display: block; margin: 6px 0; color: var(--text-muted);
     }
-    .hero .date {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: var(--text-muted);
-      letter-spacing: 1.5px;
-    }
+    .hero .date { margin-top: 20px; font-size: 1rem; color: var(--text-muted); }
 
-    section {
-      padding: 60px 20px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
+    section { padding: 60px 20px; max-width: 720px; margin: 0 auto; }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      text-align: center;
-      color: var(--olive-dark);
-      margin-bottom: 40px;
-      font-weight: 500;
-      letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+      text-align: center; color: var(--olive-dark); margin-bottom: 40px; font-weight: 500;
     }
 
-    /* Family */
     .family-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      text-align: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: center;
     }
-    @media (max-width: 520px) {
-      .family-grid { grid-template-columns: 1fr; gap: 36px; }
-    }
-    .family-card h4 {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
+    @media (max-width: 520px) { .family-grid { grid-template-columns: 1fr; } }
     .family-card .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.28rem;
-      color: var(--olive-dark);
-      margin-bottom: 4px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; color: var(--olive-dark);
     }
-    .family-card .addr {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
+    .family-card .addr { font-size: 0.9rem; color: var(--text-muted); }
 
-    /* Announce */
-    .announce {
-      text-align: center;
-    }
-    .announce .big-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 6.5vw, 2.6rem);
-      color: var(--olive-dark);
-      margin: 14px 0 4px;
-    }
-    .announce .role {
-      font-size: 0.8rem;
-      letter-spacing: 2.5px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    /* Info box */
     .info-box {
-      background: #fff;
-      border-radius: 18px;
-      padding: 36px 24px;
-      text-align: center;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
+      background: #fff; border-radius: 18px; padding: 36px 24px;
+      text-align: center; box-shadow: 0 12px 36px rgba(0,0,0,0.05);
     }
     .info-box .time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      color: var(--olive-dark);
-      margin: 12px 0;
-    }
-    .info-box .sub {
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+      color: var(--olive-dark); margin: 12px 0;
     }
 
-    /* ========== GALLERY SLIDER ========== */
+    /* Gallery */
     .gallery-wrapper {
-      position: relative;
-      max-width: 560px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      position: relative; max-width: 560px; margin: 0 auto;
+      overflow: hidden; border-radius: 16px;
     }
-
-    .gallery-track {
-      display: flex;
-      transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
-      will-change: transform;
-    }
-
-    .gallery-slide {
-      min-width: 100%;
-      aspect-ratio: 4/5;
-      position: relative;
-    }
-    .gallery-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
+    .gallery-track { display: flex; transition: transform 0.55s ease; }
+    .gallery-slide { min-width: 100%; aspect-ratio: 4/5; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; }
     .gallery-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
-      background: rgba(255,255,255,0.88);
-      border: none;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      color: var(--olive-dark);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      transition: all 0.25s;
-      z-index: 10;
-    }
-    .gallery-nav:hover {
-      background: #fff;
-      transform: translateY(-50%) scale(1.08);
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; background: rgba(255,255,255,0.9);
+      border: none; border-radius: 50%; font-size: 1.3rem;
+      color: var(--olive-dark); cursor: pointer; z-index: 10;
     }
     .gallery-nav.prev { left: 14px; }
     .gallery-nav.next { right: 14px; }
-
     .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
+      display: flex; justify-content: center; gap: 8px; margin-top: 18px;
     }
     .gallery-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #d4cdb8;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
+      width: 8px; height: 8px; border-radius: 50%; background: #d4cdb8;
+      border: none; cursor: pointer;
     }
-    .gallery-dot.active {
-      background: var(--olive-dark);
-      transform: scale(1.25);
-    }
+    .gallery-dot.active { background: var(--olive-dark); }
 
-    .gallery-counter {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-    }
-
-    /* Timeline */
     .timeline {
-      position: relative;
-      padding-left: 28px;
-      border-left: 2px solid #e0d9cc;
-      margin: 0 auto;
-      max-width: 380px;
+      position: relative; padding-left: 28px; border-left: 2px solid #e0d9cc;
+      max-width: 380px; margin: 0 auto;
     }
     .timeline-item {
-      position: relative;
-      margin-bottom: 30px;
-      padding-left: 22px;
+      position: relative; margin-bottom: 28px; padding-left: 22px;
     }
     .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -35px;
-      top: 7px;
-      width: 12px;
-      height: 12px;
-      background: var(--olive-dark);
-      border-radius: 50%;
-    }
-    .timeline-item .t-time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      color: var(--olive-dark);
-    }
-    .timeline-item .t-event {
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      content: ''; position: absolute; left: -35px; top: 7px;
+      width: 12px; height: 12px; background: var(--olive-dark); border-radius: 50%;
     }
 
-    /* Forms */
     .form-box { max-width: 420px; margin: 0 auto; }
     input, select, textarea {
-      width: 100%;
-      padding: 15px 16px;
-      margin-bottom: 13px;
-      border: 1px solid #e0d9cc;
-      border-radius: 12px;
-      background: #fff;
-      font-size: 16px;
-      font-family: inherit;
-      outline: none;
-      color: var(--text);
-      transition: border-color 0.25s;
+      width: 100%; padding: 15px 16px; margin-bottom: 13px;
+      border: 1px solid #e0d9cc; border-radius: 12px;
+      background: #fff; font-size: 16px; font-family: inherit;
     }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--olive);
-    }
-    textarea { min-height: 110px; resize: vertical; }
-
     .btn-main {
-      background: var(--olive-dark);
-      color: #fff;
-      border: none;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: inline-block;
-      transition: all 0.3s;
+      background: var(--olive-dark); color: #fff; border: none;
+      padding: 15px 40px; border-radius: 50px; cursor: pointer;
     }
-    .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    .wishes {
-      margin-top: 32px;
-      display: grid;
-      gap: 14px;
-    }
+    .wishes { margin-top: 30px; display: grid; gap: 14px; }
     .wish-item {
-      background: #fff;
-      padding: 18px 20px;
-      border-radius: 14px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+      background: #fff; padding: 18px 20px; border-radius: 14px;
     }
     .wish-item .w-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.18rem;
-      color: var(--olive-dark);
-      margin-bottom: 5px;
-    }
-    .wish-item .w-text {
-      font-size: 0.93rem;
-      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--olive-dark);
     }
 
-    .thank-you {
-      display: none;
-      text-align: center;
-      padding: 28px;
-      color: var(--olive-dark);
-    }
-
+    /* Music button */
     .music-btn {
-      position: fixed;
-      bottom: 26px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--olive-dark);
-      color: #fff;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-      transition: transform 0.25s;
+      position: fixed; bottom: 26px; right: 20px;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--olive-dark); color: #fff; border: none;
+      font-size: 1.25rem; cursor: pointer; z-index: 100;
+      display: none; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
     .music-btn.show { display: flex; }
-    .music-btn:hover { transform: scale(1.08); }
 
     footer {
-      text-align: center;
-      padding: 55px 20px 80px;
-      background: #f3efe6;
-      color: var(--text-muted);
-      font-size: 0.92rem;
+      text-align: center; padding: 55px 20px 100px;
+      background: #f3efe6; color: var(--text-muted); font-size: 0.92rem;
     }
-    footer .heart { color: var(--olive-dark); margin: 0 5px; }
   </style>
 </head>
 <body>
@@ -490,9 +193,6 @@
   <!-- COVER -->
   <div id="cover">
     <div class="cover-card">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&q=80" class="corner-flower tl" alt="">
-      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&q=80" class="corner-flower br" alt="">
-      
       <div class="heart-btn">♡</div>
       <div class="cover-names">
         An
@@ -505,16 +205,16 @@
     </div>
   </div>
 
-  <!-- MUSIC -->
+  <!-- MUSIC BUTTON -->
   <button class="music-btn" id="musicBtn">♪</button>
+
+  <!-- AUDIO - OpenDrive -->
   <audio id="bgMusic" loop preload="auto">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://od.lk/s/NTlfMTE3NTY2OTAzX3RHWWhq/selfupload_l3Du0ng.mp3" type="audio/mpeg">
   </audio>
 
   <!-- MAIN -->
   <div id="main">
-
-    <!-- HERO -->
     <div class="hero">
       <div class="label">The Wedding Of</div>
       <div class="script">An</div>
@@ -523,55 +223,34 @@
       <div class="date">12 • 12 • 2026</div>
     </div>
 
-    <!-- GIA ĐÌNH -->
     <section>
       <h2 class="section-title">THÔNG TIN LỄ CƯỚI</h2>
       <div class="family-grid">
         <div class="family-card">
-          <h4>Ông Bà</h4>
           <div class="name">Nguyễn Văn A</div>
           <div class="name">Trần Thị B</div>
-          <div class="addr">123 Nguyễn Huệ,<br>Quận 1, TP.HCM</div>
+          <div class="addr">123 Nguyễn Huệ, Quận 1</div>
         </div>
         <div class="family-card">
-          <h4>Ông Bà</h4>
           <div class="name">Lê Văn C</div>
           <div class="name">Phạm Thị D</div>
-          <div class="addr">456 Lê Lợi,<br>Quận 1, TP.HCM</div>
+          <div class="addr">456 Lê Lợi, Quận 1</div>
         </div>
       </div>
     </section>
 
-    <!-- BÁO TIN -->
-    <section>
-      <div class="announce">
-        <div class="section-title" style="margin-bottom:28px;">TRÂN TRỌNG BÁO TIN<br>LỄ THÀNH HÔN CỦA CON CHÚNG TÔI</div>
-        <div class="big-name">An Nguyễn</div>
-        <div class="role">Trưởng Nam</div>
-        <div style="font-size:2rem;margin:18px 0;color:var(--text-muted);font-family:'Great Vibes',cursive;">&</div>
-        <div class="big-name">Minh Lê</div>
-        <div class="role">Út Nữ</div>
-      </div>
-    </section>
-
-    <!-- LỄ THÀNH HÔN -->
     <section>
       <div class="info-box">
-        <p class="sub">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI</p>
-        <p style="font-weight:500;margin:10px 0;font-size:1.15rem;">TƯ GIA</p>
-        <p class="sub">VÀO LÚC</p>
+        <p>LỄ THÀNH HÔN</p>
         <div class="time">09:00</div>
-        <p class="sub">Thứ Bảy • 12 tháng 12, 2026</p>
+        <p>Thứ Bảy • 12 tháng 12, 2026</p>
       </div>
     </section>
 
-    <!-- ALBUM SLIDER -->
     <section>
       <h2 class="section-title">ALBUM KHOẢNH KHẮC</h2>
-      
-      <div class="gallery-wrapper" id="galleryWrapper">
+      <div class="gallery-wrapper">
         <div class="gallery-track" id="galleryTrack">
-          <!-- 10 ảnh -->
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="1"></div>
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="2"></div>
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1520854221256-7931775992fb?w=800" alt="3"></div>
@@ -579,154 +258,110 @@
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="5"></div>
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="6"></div>
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="7"></div>
-          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1520855957875-6f5d5c5c5c5c?w=800" alt="8"></div>
-          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9ef2f?w=800" alt="9"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9ef2f?w=800" alt="8"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1520855957875-6f5d5c5c5c5c?w=800" alt="9"></div>
           <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1529634597583-aec92c6c6c5c?w=800" alt="10"></div>
         </div>
-
         <button class="gallery-nav prev" id="prevBtn">‹</button>
         <button class="gallery-nav next" id="nextBtn">›</button>
       </div>
-
       <div class="gallery-dots" id="galleryDots"></div>
-      <div class="gallery-counter"><span id="currentSlide">1</span> / 10</div>
     </section>
 
-    <!-- TIỆC CƯỚI -->
     <section>
       <h2 class="section-title">THÔNG TIN TIỆC CƯỚI</h2>
       <div class="info-box">
-        <p class="sub">TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC</p>
         <div class="time">18:00</div>
-        <p class="sub">Thứ Bảy • 12 tháng 12, 2026</p>
-        <div style="margin:18px 0;font-size:0.95rem;color:var(--text-muted);">
-          <div>Đón khách: 17:30</div>
-          <div>Khai tiệc: 18:00</div>
-        </div>
-        <p style="font-weight:500;margin-top:14px;">Trung tâm Hội nghị ABC<br>456 Lê Lợi, Quận 1, TP.HCM</p>
-        <a href="https://maps.google.com" target="_blank" style="display:inline-block;margin-top:18px;color:var(--olive-dark);text-decoration:underline;font-size:0.9rem;">Chỉ đường →</a>
+        <p>Thứ Bảy • 12 tháng 12, 2026</p>
+        <p style="margin-top:12px">Trung tâm Hội nghị ABC<br>456 Lê Lợi, Quận 1</p>
       </div>
     </section>
 
-    <!-- LỊCH TRÌNH -->
     <section>
-      <h2 class="section-title">LỊCH TRÌNH NGÀY CƯỚI</h2>
+      <h2 class="section-title">LỊCH TRÌNH</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="t-time">17:30</div>
-          <div class="t-event">Đón khách</div>
-        </div>
-        <div class="timeline-item">
-          <div class="t-time">18:00</div>
-          <div class="t-event">Khai tiệc</div>
-        </div>
-        <div class="timeline-item">
-          <div class="t-time">18:30</div>
-          <div class="t-event">Rót rượu, cắt bánh</div>
-        </div>
-        <div class="timeline-item">
-          <div class="t-time">19:00</div>
-          <div class="t-event">Phục vụ món chính</div>
-        </div>
-        <div class="timeline-item">
-          <div class="t-time">21:00</div>
-          <div class="t-event">Kết thúc tiệc</div>
-        </div>
+        <div class="timeline-item"><strong>17:30</strong> – Đón khách</div>
+        <div class="timeline-item"><strong>18:00</strong> – Khai tiệc</div>
+        <div class="timeline-item"><strong>18:30</strong> – Rót rượu, cắt bánh</div>
+        <div class="timeline-item"><strong>19:00</strong> – Món chính</div>
+        <div class="timeline-item"><strong>21:00</strong> – Kết thúc</div>
       </div>
     </section>
 
-    <!-- SỔ LƯU BÚT -->
     <section>
       <h2 class="section-title">SỔ LƯU BÚT</h2>
       <div class="form-box">
         <input type="text" id="wishName" placeholder="Tên của bạn">
-        <textarea id="wishText" placeholder="Gửi lời chúc đến cặp đôi..."></textarea>
-        <div style="text-align:center;">
+        <textarea id="wishText" placeholder="Gửi lời chúc..."></textarea>
+        <div style="text-align:center">
           <button class="btn-main" onclick="addWish()">Gửi lời chúc</button>
         </div>
       </div>
       <div class="wishes" id="wishesList"></div>
     </section>
 
-    <!-- RSVP -->
     <section>
       <h2 class="section-title">XÁC NHẬN THAM DỰ</h2>
-      <div class="form-box" id="rsvpForm" style="text-align:center;">
+      <div class="form-box" id="rsvpForm" style="text-align:center">
         <input type="text" id="guestName" placeholder="Tên của bạn">
         <select id="guestCount">
           <option value="1">1 người</option>
           <option value="2">2 người</option>
           <option value="3">3 người</option>
-          <option value="4">4 người</option>
         </select>
         <button class="btn-main" onclick="submitRSVP()">Gửi xác nhận</button>
       </div>
-      <div class="thank-you" id="thankYou">
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:10px;">Cảm ơn bạn rất nhiều!</h3>
-        <p>Chúng mình đã nhận được xác nhận.</p>
-      </div>
-    </section>
-
-    <!-- HỘP QUÀ -->
-    <section style="text-align:center;">
-      <h2 class="section-title">HỘP QUÀ MỪNG</h2>
-      <div class="info-box">
-        <p class="sub" style="margin-bottom:18px;">Quét mã để gửi lời chúc may mắn</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=STK:0123456789-VCB-NguyenVanA" 
-             alt="QR" style="width:150px;margin:0 auto 14px;border-radius:10px;">
-        <p style="font-size:0.9rem;color:var(--text-muted);">Nguyễn Văn A – Vietcombank</p>
+      <div id="thankYou" style="display:none;text-align:center;padding:20px;color:var(--olive-dark)">
+        <h3>Cảm ơn bạn rất nhiều!</h3>
       </div>
     </section>
 
     <footer>
       <p>Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!</p>
-      <p style="margin-top:14px;">An <span class="heart">♡</span> Minh • 12.12.2026</p>
+      <p style="margin-top:12px">An ♡ Minh • 12.12.2026</p>
     </footer>
   </div>
 
   <script>
     // Hoa rơi
     function createPetals() {
-      const icons = ['🌸', '💮', '🏵️', '💗', '✿'];
-      for (let i = 0; i < 15; i++) {
+      const icons = ['🌸','💮','🏵️','💗'];
+      for (let i = 0; i < 12; i++) {
         const el = document.createElement('div');
         el.className = 'petal';
-        el.textContent = icons[Math.floor(Math.random() * icons.length)];
-        el.style.left = Math.random() * 100 + 'vw';
-        el.style.animationDuration = (9 + Math.random() * 12) + 's';
-        el.style.animationDelay = Math.random() * 10 + 's';
-        el.style.fontSize = (14 + Math.random() * 12) + 'px';
+        el.textContent = icons[Math.floor(Math.random()*icons.length)];
+        el.style.left = Math.random()*100 + 'vw';
+        el.style.animationDuration = (8 + Math.random()*10) + 's';
+        el.style.animationDelay = Math.random()*8 + 's';
+        el.style.fontSize = (14 + Math.random()*10) + 'px';
         document.body.appendChild(el);
       }
     }
     createPetals();
 
-    let isPlaying = false;
+    // Nhạc
     const music = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
+    let isPlaying = false;
 
-    // Mở thiệp mượt
     document.getElementById('openBtn').addEventListener('click', () => {
-      const cover = document.getElementById('cover');
-      const main = document.getElementById('main');
-
-      cover.classList.add('hide');
-
-      // Đợi cover bắt đầu ẩn rồi mới hiện main
+      document.getElementById('cover').classList.add('hide');
       setTimeout(() => {
+        const main = document.getElementById('main');
         main.style.display = 'block';
-        // Force reflow
         main.offsetHeight;
         main.classList.add('show');
         musicBtn.classList.add('show');
-      }, 200);
 
-      // Phát nhạc
-      music.volume = 0.45;
-      music.play().then(() => {
-        isPlaying = true;
-        musicBtn.textContent = '❚❚';
-      }).catch(() => {});
+        // Phát nhạc khi mở thiệp
+        music.volume = 0.5;
+        music.play().then(() => {
+          isPlaying = true;
+          musicBtn.textContent = '❚❚';
+        }).catch(() => {
+          console.log('Autoplay bị chặn, hãy bấm nút nhạc');
+        });
+      }, 250);
     });
 
     musicBtn.addEventListener('click', () => {
@@ -740,72 +375,35 @@
       isPlaying = !isPlaying;
     });
 
-    // ========== GALLERY SLIDER ==========
+    // Gallery
     const track = document.getElementById('galleryTrack');
     const slides = document.querySelectorAll('.gallery-slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('galleryDots');
-    const currentSlideEl = document.getElementById('currentSlide');
     let currentIndex = 0;
-    const totalSlides = slides.length;
 
-    // Tạo dots
-    for (let i = 0; i < totalSlides; i++) {
+    for (let i = 0; i < slides.length; i++) {
       const dot = document.createElement('button');
       dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goToSlide(i));
+      dot.onclick = () => goToSlide(i);
       dotsContainer.appendChild(dot);
     }
     const dots = document.querySelectorAll('.gallery-dot');
 
-    function updateGallery() {
+    function goToSlide(i) {
+      currentIndex = (i + slides.length) % slides.length;
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-      currentSlideEl.textContent = currentIndex + 1;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === currentIndex));
     }
+    document.getElementById('prevBtn').onclick = () => goToSlide(currentIndex - 1);
+    document.getElementById('nextBtn').onclick = () => goToSlide(currentIndex + 1);
 
-    function goToSlide(index) {
-      currentIndex = index;
-      if (currentIndex < 0) currentIndex = totalSlides - 1;
-      if (currentIndex >= totalSlides) currentIndex = 0;
-      updateGallery();
-    }
-
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-    // Vuốt trên mobile
-    let startX = 0;
-    let isDragging = false;
-
-    track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
-
-    track.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-    }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) goToSlide(currentIndex + 1);
-        else goToSlide(currentIndex - 1);
-      }
-      isDragging = false;
-    });
-
-    // Guestbook
+    // Guestbook + RSVP
     function addWish() {
       const name = document.getElementById('wishName').value.trim();
       const text = document.getElementById('wishText').value.trim();
-      if (!name || !text) return alert('Vui lòng nhập đầy đủ thông tin');
+      if (!name || !text) return alert('Vui lòng nhập đầy đủ');
       const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      wishes.unshift({ name, text });
+      wishes.unshift({name, text});
       localStorage.setItem('wishes', JSON.stringify(wishes));
       document.getElementById('wishName').value = '';
       document.getElementById('wishText').value = '';
@@ -813,19 +411,14 @@
     }
     function renderWishes() {
       const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      document.getElementById('wishesList').innerHTML = wishes.map(w => `
-        <div class="wish-item">
-          <div class="w-name">${w.name}</div>
-          <div class="w-text">${w.text}</div>
-        </div>
-      `).join('');
+      document.getElementById('wishesList').innerHTML = wishes.map(w => 
+        `<div class="wish-item"><div class="w-name">${w.name}</div><div>${w.text}</div></div>`
+      ).join('');
     }
     renderWishes();
 
-    // RSVP
     function submitRSVP() {
-      const name = document.getElementById('guestName').value.trim();
-      if (!name) return alert('Vui lòng nhập tên');
+      if (!document.getElementById('guestName').value.trim()) return alert('Vui lòng nhập tên');
       document.getElementById('rsvpForm').style.display = 'none';
       document.getElementById('thankYou').style.display = 'block';
     }
