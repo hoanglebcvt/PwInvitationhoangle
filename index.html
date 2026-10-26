@@ -26,19 +26,28 @@
     }
 
     .petal {
-      position: fixed; pointer-events: none; z-index: 5; opacity: 0.5;
+      position: fixed;
+      top: -40px;
+      pointer-events: none;
+      z-index: 80;
+      opacity: 0;
+      will-change: transform, opacity;
       animation: fall linear infinite;
     }
     @keyframes fall {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.5; }
-      90% { opacity: 0.5; }
-      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.7; }
+      90% { opacity: 0.55; }
+      100% { transform: translateY(110vh) rotate(640deg); opacity: 0; }
     }
 
     .heart-float {
-      position: fixed; pointer-events: none; z-index: 9999;
-      font-size: 18px; animation: heartFly 1.2s ease-out forwards; user-select: none;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 18px;
+      animation: heartFly 1.2s ease-out forwards;
+      user-select: none;
     }
     @keyframes heartFly {
       0% { opacity: 1; transform: translate(0,0) scale(0.6) rotate(0deg); }
@@ -46,7 +55,6 @@
       100% { opacity: 0; transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(var(--rot2)); }
     }
 
-    /* Reveal - có thể chạy lại */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -58,36 +66,67 @@
     }
 
     .divider {
-      display: flex; align-items: center; justify-content: center;
-      gap: 12px; margin: 8px auto 32px; max-width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 8px auto 32px;
+      max-width: 220px;
     }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px;
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
       background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
     .divider span { color: var(--gold); font-size: 0.95rem; }
 
     #cover {
-      position: fixed; inset: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: center;
-      background: 
-        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.14) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(184,166,122,0.18) 0%, transparent 45%),
-        linear-gradient(160deg, #4a5630 0%, #5c6b3d 40%, #3d4a28 100%);
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       transition: opacity 1.2s ease, visibility 1.2s, transform 1.2s;
     }
     #cover.hide {
-      opacity: 0; visibility: hidden; transform: scale(1.06); pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.06);
+      pointer-events: none;
     }
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background: #0a0a0a url('https://portal.skymond.vn/file/525465ac-6c27-4baa-bb2c-921190262c9a.jpeg') center center / cover no-repeat;
+      z-index: 0;
+    }
+    .cover-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.22);
+    }
+
     .cover-card {
-      width: min(400px, 92vw); background: var(--cream); border-radius: 22px;
-      padding: 48px 32px 44px; text-align: center;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.28);
+      position: relative;
+      z-index: 2;
+      width: min(400px, 92vw);
+      background: var(--cream);
+      border-radius: 22px;
+      padding: 48px 32px 44px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
     .monogram-wrap { display: flex; justify-content: center; margin-bottom: 26px; }
     .monogram {
-      width: 88px; height: 88px; border: 1px solid var(--olive-dark);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      width: 88px; height: 88px;
+      border: 1px solid var(--olive-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       position: relative;
     }
     .monogram::before {
@@ -99,37 +138,47 @@
       border: 1px solid rgba(61,74,40,0.12); border-radius: 50%;
     }
     .monogram-text {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.55rem;
-      font-weight: 500; color: var(--olive-dark); letter-spacing: 2px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem; font-weight: 500;
+      color: var(--olive-dark); letter-spacing: 2px;
     }
     .monogram-text span {
-      font-family: 'Great Vibes', cursive; font-size: 1.35rem;
-      margin: 0 3px; color: var(--text-muted);
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.35rem; margin: 0 3px; color: var(--text-muted);
     }
     .cover-names {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.55rem;
-      font-weight: 500; line-height: 1.15;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.55rem; font-weight: 500; line-height: 1.15;
     }
     .cover-names .amp {
-      font-family: 'Great Vibes', cursive; font-size: 2.15rem;
-      display: block; margin: 6px 0; color: var(--text-muted);
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.15rem; display: block; margin: 6px 0; color: var(--text-muted);
     }
     .cover-date { font-size: 0.95rem; color: var(--text-muted); margin: 18px 0 6px; letter-spacing: 1px; }
     .cover-invite { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; }
     .btn-open {
       background: var(--olive-dark); color: #fff; border: none;
       padding: 15px 48px; border-radius: 50px; font-size: 1rem; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-open:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(61,74,40,0.35);
     }
 
     #main {
-      display: none; background: var(--cream); min-height: 100vh;
-      opacity: 0; transform: translateY(30px);
+      display: none;
+      background: var(--cream);
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(30px);
       transition: opacity 1s ease 0.15s, transform 1s ease 0.15s;
     }
     #main.show { display: block; opacity: 1; transform: translateY(0); }
 
     .hero {
-      text-align: center; padding: 80px 20px 55px;
+      text-align: center;
+      padding: 80px 20px 55px;
       background: linear-gradient(to bottom, #f9f6f0 0%, #f4efe6 100%);
     }
     .hero .label {
@@ -141,8 +190,8 @@
       font-size: clamp(3.4rem, 11vw, 5.3rem); color: var(--olive-dark);
     }
     .hero .amp {
-      font-family: 'Great Vibes', cursive; font-size: 2.4rem;
-      display: block; margin: 4px 0; color: var(--text-muted);
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem; display: block; margin: 4px 0; color: var(--text-muted);
     }
     .hero .date { margin-top: 16px; font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; }
 
@@ -150,23 +199,29 @@
       display: flex; justify-content: center; gap: 14px; margin-top: 40px; flex-wrap: wrap;
     }
     .count-item {
-      background: #fff; border-radius: 16px; padding: 16px 14px; min-width: 74px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      border: 1px solid rgba(184,166,122,0.15); text-align: center;
+      background: #fff; border-radius: 18px; padding: 18px 16px 16px;
+      min-width: 78px; text-align: center; position: relative;
+      box-shadow: 0 12px 32px rgba(61,74,40,0.07);
+      border: 1px solid rgba(184,166,122,0.18);
+    }
+    .count-item::before {
+      content: ''; position: absolute; inset: 6px;
+      border: 1px solid rgba(184,166,122,0.14); border-radius: 12px; pointer-events: none;
     }
     .count-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; color: var(--olive-dark);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; color: var(--olive-dark); font-weight: 500; position: relative;
     }
     .count-label {
       font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;
-      letter-spacing: 1.2px; margin-top: 5px;
+      letter-spacing: 1.2px; margin-top: 6px; position: relative;
     }
 
     section { padding: 55px 20px; max-width: 680px; margin: 0 auto; }
     .section-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
-      text-align: center; color: var(--olive-dark); margin-bottom: 8px;
-      font-weight: 500; letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; text-align: center; color: var(--olive-dark);
+      margin-bottom: 8px; font-weight: 500; letter-spacing: 1px;
     }
 
     .family-grid {
@@ -188,8 +243,8 @@
       color: var(--text-muted); margin-bottom: 16px;
     }
     .family-card .name {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
-      color: var(--olive-dark); font-weight: 500; line-height: 1.45;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--olive-dark); font-weight: 500; line-height: 1.45;
     }
     .family-card .addr {
       font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 14px;
@@ -210,18 +265,102 @@
       color: var(--text-muted); margin-bottom: 10px;
     }
     .info-card .place {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.45rem;
-      color: var(--olive-dark); font-weight: 500; margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; color: var(--olive-dark); font-weight: 500; margin-bottom: 20px;
     }
     .info-card .time {
-      font-family: 'Cormorant Garamond', serif; font-size: 2.9rem;
-      color: var(--olive-dark); line-height: 1; font-weight: 500; margin-bottom: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.9rem; color: var(--olive-dark); line-height: 1; font-weight: 500; margin-bottom: 12px;
     }
     .info-card .date { font-size: 0.95rem; color: var(--text-muted); }
     .info-card .address {
       margin-top: 24px; padding-top: 20px;
       border-top: 1px solid rgba(184,166,122,0.22);
       font-size: 0.92rem; color: var(--text-muted); line-height: 1.65;
+    }
+
+    .map-wrap {
+      margin-top: 24px; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid rgba(184,166,122,0.2);
+    }
+    .map-wrap iframe { display: block; width: 100%; height: 220px; border: 0; }
+    .btn-map {
+      display: inline-block; margin-top: 16px; padding: 12px 28px;
+      background: var(--olive-dark); color: #fff; border-radius: 50px;
+      font-size: 0.9rem; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-map:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    @media (max-width: 520px) { .qr-grid { grid-template-columns: 1fr; } }
+    .qr-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 20px 24px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 14px 40px rgba(61,74,40,0.07);
+      border: 1px solid rgba(184,166,122,0.18);
+    }
+    .qr-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(184,166,122,0.14);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+    .qr-card .qr-role {
+      font-size: 0.76rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .qr-card .qr-img {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 14px;
+      border-radius: 12px;
+      background: #f5f2ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(184,166,122,0.2);
+    }
+    .qr-card .qr-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .qr-card .qr-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--olive-dark);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .qr-card .qr-bank {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .qr-note {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .gallery-wrapper {
@@ -262,12 +401,10 @@
       box-shadow: 0 0 0 1.5px var(--olive-dark);
     }
     .timeline-item .t-time {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
-      color: var(--olive-dark); font-weight: 500;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--olive-dark); font-weight: 500;
     }
-    .timeline-item .t-event {
-      font-size: 0.93rem; color: var(--text-muted); margin-top: 3px;
-    }
+    .timeline-item .t-event { font-size: 0.93rem; color: var(--text-muted); margin-top: 3px; }
 
     .form-box { max-width: 400px; margin: 0 auto; }
     input, select, textarea {
@@ -288,8 +425,8 @@
       border: 1px solid rgba(184,166,122,0.1);
     }
     .wish-item .w-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
-      color: var(--olive-dark); margin-bottom: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--olive-dark); margin-bottom: 4px;
     }
     .wish-item .w-text { font-size: 0.92rem; color: var(--text-muted); }
 
@@ -302,6 +439,11 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.22);
     }
     .music-btn.show { display: flex; }
+    .music-btn.spinning { animation: musicSpin 3s linear infinite; }
+    @keyframes musicSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
     footer {
       text-align: center; padding: 50px 20px 100px;
@@ -312,6 +454,7 @@
 <body>
 
   <div id="cover">
+    <div class="cover-bg"></div>
     <div class="cover-card">
       <div class="monogram-wrap">
         <div class="monogram">
@@ -408,7 +551,20 @@
         <div class="label">Tiệc được tổ chức vào lúc</div>
         <div class="time">18:00</div>
         <div class="date">Thứ Bảy • 12 tháng 12, 2026</div>
-        <div class="address">Trung tâm Hội nghị ABC<br>456 Lê Lợi, Quận 1, TP.HCM</div>
+        <div class="address">
+          Trung tâm Hội nghị ABC<br>
+          456 Lê Lợi, Quận 1, TP.HCM
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps?q=456+Lê+Lợi,+Quận+1,+TP.HCM&output=embed"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <a class="btn-map"
+           href="https://www.google.com/maps/dir/?api=1&destination=456+Lê+Lợi,+Quận+1,+TP.HCM"
+           target="_blank" rel="noopener">Chỉ đường →</a>
       </div>
     </section>
 
@@ -422,6 +578,39 @@
         <div class="timeline-item"><div class="t-time">19:00</div><div class="t-event">Phục vụ món chính</div></div>
         <div class="timeline-item"><div class="t-time">21:00</div><div class="t-event">Kết thúc chương trình</div></div>
       </div>
+    </section>
+
+    <section class="reveal">
+      <h2 class="section-title">GỬI LỜI CHÚC MAY MẮN</h2>
+      <div class="divider"><span>❀</span></div>
+      <div class="qr-grid">
+        <div class="qr-card">
+          <div class="qr-role">Chú rể</div>
+          <div class="qr-img">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=NganHang-ChuRe-SoTK" alt="QR Chú rể">
+          </div>
+          <div class="qr-name">An</div>
+          <div class="qr-bank">
+            Vietcombank<br>
+            0123456789
+          </div>
+        </div>
+        <div class="qr-card">
+          <div class="qr-role">Cô dâu</div>
+          <div class="qr-img">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=NganHang-CoDau-SoTK" alt="QR Cô dâu">
+          </div>
+          <div class="qr-name">Minh</div>
+          <div class="qr-bank">
+            Techcombank<br>
+            9876543210
+          </div>
+        </div>
+      </div>
+      <p class="qr-note">
+        Sự hiện diện của bạn là món quà ý nghĩa nhất.<br>
+        Nếu tiện, có thể gửi lời chúc qua QR bên trên.
+      </p>
     </section>
 
     <section class="reveal">
@@ -462,91 +651,83 @@
   </div>
 
   <script>
-    // Heart
-    const heartIcons = ['💗','💖','💓','❤️','💕','♡'];
-    function createHeart(x, y, isClick = false) {
-      const heart = document.createElement('div');
-      heart.className = 'heart-float';
-      heart.textContent = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-      heart.style.fontSize = (isClick ? 16 + Math.random()*14 : 12 + Math.random()*8) + 'px';
-      heart.style.left = x + 'px';
-      heart.style.top = y + 'px';
-      const tx = (Math.random()-0.5)*(isClick?80:40);
-      const ty = -30 - Math.random()*(isClick?80:50);
-      const tx2 = tx + (Math.random()-0.5)*40;
-      const ty2 = ty - 40 - Math.random()*40;
-      const rot = (Math.random()-0.5)*60;
-      const rot2 = rot + (Math.random()-0.5)*40;
-      heart.style.setProperty('--tx', tx+'px');
-      heart.style.setProperty('--ty', ty+'px');
-      heart.style.setProperty('--tx2', tx2+'px');
-      heart.style.setProperty('--ty2', ty2+'px');
-      heart.style.setProperty('--rot', rot+'deg');
-      heart.style.setProperty('--rot2', rot2+'deg');
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1200);
-    }
-    document.addEventListener('click', (e) => {
-      for (let i = 0; i < 6; i++) {
-        setTimeout(() => createHeart(e.clientX + (Math.random()-0.5)*30, e.clientY + (Math.random()-0.5)*30, true), i * 40);
-      }
-    });
-    let lastMove = 0;
-    document.addEventListener('mousemove', (e) => {
-      if (Date.now() - lastMove > 70) {
-        createHeart(e.clientX, e.clientY, false);
-        lastMove = Date.now();
-      }
-    });
-
-    // Petals
     function createPetals() {
-      const icons = ['🌸','💮','🏵️','💗','✿'];
-      for (let i = 0; i < 16; i++) {
+      document.querySelectorAll('.petal').forEach(el => el.remove());
+      const icons = ['🌸', '💮', '🏵️', '💗', '✿', '🍃'];
+      for (let i = 0; i < 9; i++) {
         const el = document.createElement('div');
         el.className = 'petal';
-        el.textContent = icons[Math.floor(Math.random()*icons.length)];
-        el.style.left = Math.random()*100 + 'vw';
-        el.style.animationDuration = (11 + Math.random()*14) + 's';
-        el.style.animationDelay = Math.random()*12 + 's';
-        el.style.fontSize = (13 + Math.random()*11) + 'px';
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.fontSize = (14 + Math.random() * 12) + 'px';
+        el.style.animationDuration = (10 + Math.random() * 12) + 's';
+        el.style.animationDelay = (Math.random() * 10) + 's';
         document.body.appendChild(el);
       }
     }
     createPetals();
 
-    // Countdown
+    const heartIcons = ['💗', '💖', '💓', '❤️', '💕', '♡'];
+    function createHeart(x, y, isClick = false) {
+      const heart = document.createElement('div');
+      heart.className = 'heart-float';
+      heart.textContent = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+      heart.style.fontSize = (isClick ? 16 + Math.random() * 14 : 12 + Math.random() * 8) + 'px';
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      const tx = (Math.random() - 0.5) * (isClick ? 80 : 40);
+      const ty = -30 - Math.random() * (isClick ? 80 : 50);
+      const tx2 = tx + (Math.random() - 0.5) * 40;
+      const ty2 = ty - 40 - Math.random() * 40;
+      const rot = (Math.random() - 0.5) * 60;
+      const rot2 = rot + (Math.random() - 0.5) * 40;
+      heart.style.setProperty('--tx', tx + 'px');
+      heart.style.setProperty('--ty', ty + 'px');
+      heart.style.setProperty('--tx2', tx2 + 'px');
+      heart.style.setProperty('--ty2', ty2 + 'px');
+      heart.style.setProperty('--rot', rot + 'deg');
+      heart.style.setProperty('--rot2', rot2 + 'deg');
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1200);
+    }
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          createHeart(e.clientX + (Math.random() - 0.5) * 30, e.clientY + (Math.random() - 0.5) * 30, true);
+        }, i * 40);
+      }
+    });
+    let lastMove = 0;
+    document.addEventListener('mousemove', (e) => {
+      if (Date.now() - lastMove > 140) {
+        createHeart(e.clientX, e.clientY, false);
+        lastMove = Date.now();
+      }
+    });
+
     const weddingDate = new Date('2026-12-12T09:00:00').getTime();
     function updateCountdown() {
       const distance = weddingDate - Date.now();
       if (distance < 0) return;
-      document.getElementById('days').textContent = Math.floor(distance / (1000*60*60*24));
-      document.getElementById('hours').textContent = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-      document.getElementById('minutes').textContent = Math.floor((distance % (1000*60*60)) / (1000*60));
-      document.getElementById('seconds').textContent = Math.floor((distance % (1000*60)) / 1000);
+      document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ===== REVEAL - chạy lại khi cuộn lên/xuống =====
     function initReveal() {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          } else {
-            entry.target.classList.remove('active'); // reset để lần sau còn chạy lại
-          }
+          if (entry.isIntersecting) entry.target.classList.add('active');
+          else entry.target.classList.remove('active');
         });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       reveals.forEach(el => observer.observe(el));
     }
 
-    // Music + Open
     const music = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
     let isPlaying = false;
@@ -560,22 +741,30 @@
         main.classList.add('show');
         musicBtn.classList.add('show');
         initReveal();
+        createPetals();
         music.volume = 0.5;
         music.play().then(() => {
           isPlaying = true;
           musicBtn.textContent = '❚❚';
+          musicBtn.classList.add('spinning');
         }).catch(() => {});
       }, 250);
     });
 
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (isPlaying) { music.pause(); musicBtn.textContent = '♪'; }
-      else { music.play(); musicBtn.textContent = '❚❚'; }
+      if (isPlaying) {
+        music.pause();
+        musicBtn.textContent = '♪';
+        musicBtn.classList.remove('spinning');
+      } else {
+        music.play();
+        musicBtn.textContent = '❚❚';
+        musicBtn.classList.add('spinning');
+      }
       isPlaying = !isPlaying;
     });
 
-    // Gallery
     const track = document.getElementById('galleryTrack');
     const slides = document.querySelectorAll('.gallery-slide');
     const dotsContainer = document.getElementById('galleryDots');
@@ -595,13 +784,12 @@
     document.getElementById('prevBtn').onclick = (e) => { e.stopPropagation(); goToSlide(currentIndex - 1); };
     document.getElementById('nextBtn').onclick = (e) => { e.stopPropagation(); goToSlide(currentIndex + 1); };
 
-    // Guestbook + RSVP
     function addWish() {
       const name = document.getElementById('wishName').value.trim();
       const text = document.getElementById('wishText').value.trim();
       if (!name || !text) return alert('Vui lòng nhập đầy đủ');
       const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      wishes.unshift({name, text});
+      wishes.unshift({ name, text });
       localStorage.setItem('wishes', JSON.stringify(wishes));
       document.getElementById('wishName').value = '';
       document.getElementById('wishText').value = '';
@@ -609,7 +797,7 @@
     }
     function renderWishes() {
       const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
-      document.getElementById('wishesList').innerHTML = wishes.map(w => 
+      document.getElementById('wishesList').innerHTML = wishes.map(w =>
         `<div class="wish-item"><div class="w-name">${w.name}</div><div class="w-text">${w.text}</div></div>`
       ).join('');
     }
