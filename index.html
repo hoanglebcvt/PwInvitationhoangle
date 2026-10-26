@@ -430,6 +430,24 @@
     }
     .wish-item .w-text { font-size: 0.92rem; color: var(--text-muted); }
 
+    .wish-fade-box {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      pointer-events: none;
+    }
+
+    .wish-fade-box.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    #wishForm,
+    #wishThankYou {
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
     .music-btn {
       position: fixed; bottom: 26px; right: 20px;
       width: 52px; height: 52px; border-radius: 50%;
@@ -617,10 +635,10 @@
       <h2 class="section-title">SỔ LƯU BÚT</h2>
       <div class="divider"><span>❀</span></div>
 
-      <div class="form-box" id="wishForm">
+      <div class="form-box wish-fade-box show" id="wishForm">
         <input type="text" id="wishName" placeholder="Tên của bạn">
         <textarea id="wishText" placeholder="Gửi lời chúc đến cặp đôi..."></textarea>
-      
+
         <div style="text-align:center">
           <button class="btn-main" onclick="addWish()">
             Gửi lời chúc
@@ -629,25 +647,26 @@
       </div>
     
       <div id="wishThankYou"
-           style="display:none;text-align:center;padding:24px;">
-    
-        <h3 style="
-          font-family:'Cormorant Garamond',serif;
-          font-size:1.6rem;
-          margin-bottom:14px;
-          color:var(--olive-dark);">
+        class="wish-fade-box"
+        style="display:none;text-align:center;padding:24px;">
 
-          Cảm ơn lời chúc của bạn!
+        <h3 style="
+            font-family:'Cormorant Garamond',serif;
+            font-size:1.6rem;
+            margin-bottom:14px;
+            color:var(--olive-dark);">
+
+            Cảm ơn lời chúc của bạn!
         </h3>
-      
+
         <div id="wishPreview"
              class="wish-item"
              style="
-               max-width:450px;
-               margin:0 auto;
-               text-align:left;">
+                max-width:450px;
+                margin:0 auto;
+                text-align:left;">
         </div>
-      
+
       </div>
     </section>
 
@@ -818,35 +837,60 @@
         return;
       }
     
-      // Hiển thị lời chúc vừa gửi
-      document.getElementById('wishPreview').innerHTML = `
+      const form = document.getElementById('wishForm');
+      const thankYou = document.getElementById('wishThankYou');
+      const preview = document.getElementById('wishPreview');
+    
+      preview.innerHTML = `
         <div class="w-name">${name}</div>
         <div class="w-text">${text}</div>
       `;
     
-      // Xóa dữ liệu trong form
+      // reset form
       document.getElementById('wishName').value = '';
       document.getElementById('wishText').value = '';
     
-      // Ẩn form
-      document.getElementById('wishForm').style.display = 'none';
+      // fade out form
+      form.classList.remove('show');
     
-      // Hiện lời cảm ơn
-      document.getElementById('wishThankYou').style.display = 'block';
-    
-      // Sau 10 giây
       setTimeout(() => {
       
-        // Ẩn lời cảm ơn + lời chúc
-        document.getElementById('wishThankYou').style.display = 'none';
+        form.style.display = 'none';
       
-        document.getElementById('wishPreview').innerHTML = '';
+        // hiện box cảm ơn
+        thankYou.style.display = 'block';
       
-        // Hiện lại form
-        document.getElementById('wishForm').style.display = 'block';
+        // force reflow
+        thankYou.offsetHeight;
       
-      }, 10000);
-  }
+        // fade in
+        thankYou.classList.add('show');
+      
+      }, 600);
+    
+      // giữ 10 giây
+      setTimeout(() => {
+      
+        // fade out box cảm ơn
+        thankYou.classList.remove('show');
+      
+        setTimeout(() => {
+        
+          thankYou.style.display = 'none';
+          preview.innerHTML = '';
+        
+          // hiện lại form
+          form.style.display = 'block';
+        
+          form.offsetHeight;
+        
+          // fade in form
+          form.classList.add('show');
+        
+        }, 600);
+      
+      }, 10600);
+    }
 
     function submitRSVP() {
       if (!document.getElementById('guestName').value.trim()) return alert('Vui lòng nhập tên');
